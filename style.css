@@ -13,7 +13,12 @@ h1 {
   text-align: center;
 }
 button {
-  margin-left: 40%;
+  position: relative;
+  left: 44vw;
+  padding: 10px;
+}
+button,
+.input-submit {
   margin-bottom: 15px;
   color: #222e50;
   background-color: #e9d985;
@@ -46,4 +51,16 @@ button {
   padding: 8px 4px;
   border-left: 1px solid black;
   border-bottom: 1px solid black;
+}
+body input {
+  width: 200px;
+  background-color: #e9d985;
+  color: #222e50;
+  margin-bottom: 2px;
+  border-radius: 5px;
+}
+.form {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
