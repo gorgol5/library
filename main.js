@@ -12,35 +12,47 @@ let takeData = function () {
   let title = document.querySelector(".input-title").value;
   let author = document.querySelector(".input-author").value;
   let pages = document.querySelector(".input-pages").value;
-  let status = document.querySelector(".input-status").value;
+  let status = document.querySelector(".input-status").checked;
   book1 = new Book(title, author, pages, status);
   myLibrary.push(book1);
 };
+let form = document.querySelector(".form");
 let addForm = function () {
-  let form = document.querySelector(".form");
   let input = document.createElement("input");
   input.setAttribute("type", "text");
   input.setAttribute("name", "book-title");
   input.setAttribute("class", "input-title");
   input.setAttribute("placeholder", "title of your book");
+  var x = document.createElement("LABEL");
+  x.innerHTML = "Title: ";
+  form.appendChild(x);
   form.appendChild(input);
   input = document.createElement("input");
   input.setAttribute("type", "text");
   input.setAttribute("name", "book-author");
   input.setAttribute("class", "input-author");
   input.setAttribute("placeholder", "author of your book");
+  var x = document.createElement("LABEL");
+  x.innerHTML = "Author: ";
+  form.appendChild(x);
   form.appendChild(input);
   input = document.createElement("input");
   input.setAttribute("type", "number");
   input.setAttribute("name", "book-pages");
   input.setAttribute("class", "input-pages");
   input.setAttribute("placeholder", "number of pages in your book");
+  var x = document.createElement("LABEL");
+  x.innerHTML = "Pages: ";
+  form.appendChild(x);
   form.appendChild(input);
   input = document.createElement("input");
-  input.setAttribute("type", "text");
+  input.setAttribute("type", "checkbox");
   input.setAttribute("name", "book-status");
   input.setAttribute("class", "input-status");
-  input.setAttribute("placeholder", "did you read the book?");
+  input.setAttribute("value", "Read");
+  var x = document.createElement("LABEL");
+  x.innerHTML = "Read: ";
+  form.appendChild(x);
   form.appendChild(input);
   var s = document.createElement("input");
   s.setAttribute("type", "submit");
@@ -48,9 +60,19 @@ let addForm = function () {
   s.setAttribute("class", "input-submit");
   form.appendChild(s);
   let inputSubmit = document.querySelector(".input-submit");
-  inputSubmit.addEventListener("click", addBookToLibrary);
+  inputSubmit.addEventListener("click", () => {
+    addBookToLibrary();
+    removeForm();
+  });
 };
-
+let removeForm = function () {
+  document
+    .querySelectorAll("INPUT")
+    .forEach((e) => e.parentNode.removeChild(e));
+  document
+    .querySelectorAll("LABEL")
+    .forEach((e) => e.parentNode.removeChild(e));
+};
 let book1 = {};
 let timesClicked = 0;
 let addBookToLibrary = function () {
