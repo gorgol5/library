@@ -75,24 +75,34 @@ let removeForm = function () {
 };
 let book1 = {};
 let timesClicked = 0;
+let bookRemove = "";
+
 let addBookToLibrary = function () {
   takeData();
   for (let i = timesClicked; i < myLibrary.length; i++) {
-    title = `${myLibrary[i].title}`;
+    let title = `${myLibrary[i].title}`;
     render(title, document.querySelector(".book-title"));
-    author = `${myLibrary[i].author}`;
+    let author = `${myLibrary[i].author}`;
     render(author, document.querySelector(".book-author"));
-    pages = `${myLibrary[i].pages}`;
+    let pages = `${myLibrary[i].pages}`;
     render(pages, document.querySelector(".book-pages"));
-    status = `${myLibrary[i].status}`;
+    let status = `${myLibrary[i].status}`;
     render(status, document.querySelector(".book-status"));
     render("", document.querySelector(".book-remove"));
+    bookRemove = document.querySelector(".table").lastElementChild;
+    console.log(document.querySelector(".table").lastElementChild);
+    let btn = document.createElement("button");
+    btn.innerHTML = "Remove";
+    bookRemove.appendChild(btn);
   }
   timesClicked++;
   console.log(timesClicked);
 };
 let button = document.querySelector(".add-book");
-button.addEventListener("click", addForm);
+button.addEventListener("click", () => {
+  removeForm();
+  addForm();
+});
 let table = document.querySelector(".table");
 let div = document.createElement("div");
 
