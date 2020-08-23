@@ -79,24 +79,39 @@ let bookRemove = "";
 
 let addBookToLibrary = function () {
   takeData();
+  let j = 0;
   for (let i = timesClicked; i < myLibrary.length; i++) {
+    j = myLibrary.length * 5 + 1;
+    k = myLibrary.length * 5 + 2;
+    l = myLibrary.length * 5 + 3;
+    m = myLibrary.length * 5 + 4;
+    n = myLibrary.length * 5 + 5;
     let title = `${myLibrary[i].title}`;
     render(title, document.querySelector(".book-title"));
+    let bookTitle = document.querySelector(`.table div:nth-of-type(${j})`);
+    bookTitle.dataset.place = i;
     let author = `${myLibrary[i].author}`;
     render(author, document.querySelector(".book-author"));
+    let bookAuthor = document.querySelector(`.table div:nth-of-type(${k})`);
+    bookAuthor.dataset.place = i;
     let pages = `${myLibrary[i].pages}`;
     render(pages, document.querySelector(".book-pages"));
+    let bookPages = document.querySelector(`.table div:nth-of-type(${l})`);
+    bookPages.dataset.place = i;
     let status = `${myLibrary[i].status}`;
     render(status, document.querySelector(".book-status"));
     render("", document.querySelector(".book-remove"));
+    let bookStatus = document.querySelector(`.table div:nth-of-type(${m})`);
+    bookStatus.dataset.place = i;
     bookRemove = document.querySelector(".table").lastElementChild;
-    console.log(document.querySelector(".table").lastElementChild);
     let btn = document.createElement("button");
     btn.innerHTML = "Remove";
     bookRemove.appendChild(btn);
+    let bookRemoveBtn = document.querySelector(`.table div:nth-of-type(${n})`);
+    bookRemoveBtn.dataset.place = i;
   }
   timesClicked++;
-  console.log(timesClicked);
+  j = j + 5;
 };
 let button = document.querySelector(".add-book");
 button.addEventListener("click", () => {

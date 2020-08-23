@@ -17,6 +17,7 @@ button {
   position: relative;
   left: 44vw;
   padding: 10px;
+  outline: none;
 }
 button,
 .input-submit {
