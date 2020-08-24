@@ -74,13 +74,18 @@ let removeForm = function () {
     .forEach((e) => e.parentNode.removeChild(e));
 };
 let book1 = {};
-let timesClicked = 0;
 let bookRemove = "";
-
+let bookRemoveBtn = "";
+let bookAuthor = "";
+let j = 0;
+let k = 0;
+let l = 0;
+let m = 0;
+let n = 0;
 let addBookToLibrary = function () {
   takeData();
-  let j = 0;
-  for (let i = timesClicked; i < myLibrary.length; i++) {
+
+  for (let i = myLibrary.length - 1; i < myLibrary.length; i++) {
     j = myLibrary.length * 5 + 1;
     k = myLibrary.length * 5 + 2;
     l = myLibrary.length * 5 + 3;
@@ -92,7 +97,7 @@ let addBookToLibrary = function () {
     bookTitle.dataset.place = i;
     let author = `${myLibrary[i].author}`;
     render(author, document.querySelector(".book-author"));
-    let bookAuthor = document.querySelector(`.table div:nth-of-type(${k})`);
+    bookAuthor = document.querySelector(`.table div:nth-of-type(${k})`);
     bookAuthor.dataset.place = i;
     let pages = `${myLibrary[i].pages}`;
     render(pages, document.querySelector(".book-pages"));
@@ -106,13 +111,27 @@ let addBookToLibrary = function () {
     bookRemove = document.querySelector(".table").lastElementChild;
     let btn = document.createElement("button");
     btn.innerHTML = "Remove";
+    btn.classList.add("book-remove-button");
     bookRemove.appendChild(btn);
-    let bookRemoveBtn = document.querySelector(`.table div:nth-of-type(${n})`);
+    bookRemoveBtn = document.querySelector(`.table div:nth-of-type(${n})`);
     bookRemoveBtn.dataset.place = i;
   }
-  timesClicked++;
-  j = j + 5;
+  RemoveLine();
 };
+
+let RemoveLine = function () {
+  let bookRemoveButton = document.querySelectorAll(".book-remove-button");
+  bookRemoveButton.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      z = btn.parentElement.dataset.place;
+      myLibrary.splice(z, 1);
+      var elements = document.querySelectorAll(`[data-place="${z}"]`);
+      console.log(elements);
+      elements.forEach((e) => e.parentNode.removeChild(e));
+    });
+  });
+};
+
 let button = document.querySelector(".add-book");
 button.addEventListener("click", () => {
   removeForm();
