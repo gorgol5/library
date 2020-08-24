@@ -74,3 +74,11 @@ body input {
   position: static;
   font-size: 12px;
 }
+.change-status {
+  margin-left: 10px;
+}
+@media (max-width: 600px) {
+  .change-status {
+    margin-left: 0px;
+  }
+}

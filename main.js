@@ -105,9 +105,13 @@ let addBookToLibrary = function () {
     bookPages.dataset.place = i;
     let status = `${myLibrary[i].status}`;
     render(status, document.querySelector(".book-status"));
-    render("", document.querySelector(".book-remove"));
     let bookStatus = document.querySelector(`.table div:nth-of-type(${m})`);
+    let btnSecond = document.createElement("button");
+    btnSecond.innerHTML = "Change Status";
+    btnSecond.classList.add("change-status");
+    bookStatus.appendChild(btnSecond);
     bookStatus.dataset.place = i;
+    render("", document.querySelector(".book-remove"));
     bookRemove = document.querySelector(".table").lastElementChild;
     let btn = document.createElement("button");
     btn.innerHTML = "Remove";
@@ -116,6 +120,7 @@ let addBookToLibrary = function () {
     bookRemoveBtn = document.querySelector(`.table div:nth-of-type(${n})`);
     bookRemoveBtn.dataset.place = i;
   }
+  changeStatus();
   RemoveLine();
 };
 
@@ -125,13 +130,33 @@ let RemoveLine = function () {
     btn.addEventListener("click", () => {
       z = btn.parentElement.dataset.place;
       myLibrary.splice(z, 1);
-      var elements = document.querySelectorAll(`[data-place="${z}"]`);
-      console.log(elements);
+      let elements = document.querySelectorAll(`[data-place="${z}"]`);
       elements.forEach((e) => e.parentNode.removeChild(e));
     });
   });
 };
+let changeStatus = function () {
+  let changeSatusButton = document.querySelectorAll(".change-status");
+  changeSatusButton.forEach((btn) => {
+    // button wywołuje funkcje zbyt wiele razy
+    // przy pierwszym dodaniu raz, przy drugim 2, przy trzecim 3 itd
 
+    btn.addEventListener("click", () => {
+      z = btn.parentElement.dataset.place;
+
+      if (myLibrary[z].status == false) {
+        myLibrary[z].status = true;
+      } else {
+        myLibrary[z].status = false;
+      }
+      let element = document.querySelector(
+        `.table div:nth-of-type(${5 + z * 5 + 4})`
+      );
+      console.log(myLibrary[z]);
+      element.firstChild.data = `${myLibrary[z].status}`;
+    });
+  });
+};
 let button = document.querySelector(".add-book");
 button.addEventListener("click", () => {
   removeForm();
