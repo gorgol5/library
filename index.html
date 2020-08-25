@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
@@ -17,15 +18,27 @@
           <div class="pages main cell">Pages</div>
           <div class="status main cell">Status</div>
           <div class="remove main cell">Remove</div>
-          <!-- <div class="book-title book cell">xxxxx</div>
-          <div class="book-author book cell">xxxxxx</div>
-          <div class="book-pages book cell">xxxxx</div>
-          <div class="book-status book cell">xxxxxx</div>
-          <div class="book-remove book cell">xxxxxx</div> -->
-          
+
         </div>
       </div>
     </div>
     <script src="main.js"></script>
+
+  <script src="https://www.gstatic.com/firebasejs/7.19.0/firebase-app.js"></script>
+
+   <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyBp1ef6Z2WM7juTsGtBw1zuhLDLO8W9Uvs",
+  authDomain: "library-f570d.firebaseapp.com",
+  databaseURL: "https://library-f570d.firebaseio.com",
+  projectId: "library-f570d",
+  storageBucket: "library-f570d.appspot.com",
+  messagingSenderId: "676891290133",
+  appId: "1:676891290133:web:763af128c886433c3d3c1c",
+    };
+
+    firebase.initializeApp(firebaseConfig);
+  </script>
+
   </body>
 </html>

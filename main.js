@@ -1,3 +1,11 @@
+// Initialize Firebase
+
+const preObject = document.querySelector(".wrapper");
+
+const dbrefObject = firebase.database().red().child("object");
+
+dbrefObject.on("value", (snap) => console.log(snap.val()));
+
 let myLibrary = [];
 function Book(title, author, pages, status) {
   this.title = title;
@@ -136,27 +144,26 @@ let RemoveLine = function () {
   });
 };
 let changeStatus = function () {
-  let changeSatusButton = document.querySelectorAll(".change-status");
-  changeSatusButton.forEach((btn) => {
-    // button wywołuje funkcje zbyt wiele razy
-    // przy pierwszym dodaniu raz, przy drugim 2, przy trzecim 3 itd
+  z = myLibrary.length * 5 + 4;
+  let changeSatusButton = document.querySelector(`.table div:nth-of-type(${z})`)
+    .lastElementChild;
 
-    btn.addEventListener("click", () => {
-      z = btn.parentElement.dataset.place;
+  changeSatusButton.addEventListener("click", () => {
+    z = changeSatusButton.parentElement.dataset.place;
 
-      if (myLibrary[z].status == false) {
-        myLibrary[z].status = true;
-      } else {
-        myLibrary[z].status = false;
-      }
-      let element = document.querySelector(
-        `.table div:nth-of-type(${5 + z * 5 + 4})`
-      );
-      console.log(myLibrary[z]);
-      element.firstChild.data = `${myLibrary[z].status}`;
-    });
+    if (myLibrary[z].status == false) {
+      myLibrary[z].status = true;
+    } else {
+      myLibrary[z].status = false;
+    }
+    let element = document.querySelector(
+      `.table div:nth-of-type(${5 + z * 5 + 4})`
+    );
+    element.firstChild.data = `${myLibrary[z].status}`;
   });
+  // });
 };
+
 let button = document.querySelector(".add-book");
 button.addEventListener("click", () => {
   removeForm();
