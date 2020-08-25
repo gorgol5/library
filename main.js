@@ -125,14 +125,15 @@ let addBookToLibrary = function () {
 };
 
 let RemoveLine = function () {
-  let bookRemoveButton = document.querySelectorAll(".book-remove-button");
-  bookRemoveButton.forEach((btn) => {
-    btn.addEventListener("click", () => {
-      z = btn.parentElement.dataset.place;
-      myLibrary.splice(z, 1);
-      let elements = document.querySelectorAll(`[data-place="${z}"]`);
-      elements.forEach((e) => e.parentNode.removeChild(e));
-    });
+  z = myLibrary.length * 5 + 5;
+  k = myLibrary.length * 5 + 4;
+  let bookRemoveButton = document.querySelector(`.table div:nth-of-type(${z})`)
+    .lastElementChild;
+  bookRemoveButton.addEventListener("click", () => {
+    z = bookRemoveButton.parentElement.dataset.place;
+    myLibrary.splice(z, 1);
+    let elements = document.querySelectorAll(`[data-place="${z}"]`);
+    elements.forEach((e) => e.parentNode.removeChild(e));
   });
 };
 let changeStatus = function () {
@@ -142,7 +143,9 @@ let changeStatus = function () {
 
   changeSatusButton.addEventListener("click", () => {
     z = changeSatusButton.parentElement.dataset.place;
-
+    if (z == myLibrary.length) {
+      z--;
+    }
     if (myLibrary[z].status == false) {
       myLibrary[z].status = true;
     } else {
