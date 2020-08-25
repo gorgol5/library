@@ -1,11 +1,3 @@
-// Initialize Firebase
-
-const preObject = document.querySelector(".wrapper");
-
-const dbrefObject = firebase.database().red().child("object");
-
-dbrefObject.on("value", (snap) => console.log(snap.val()));
-
 let myLibrary = [];
 function Book(title, author, pages, status) {
   this.title = title;
